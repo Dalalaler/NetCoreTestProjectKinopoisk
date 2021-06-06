@@ -1,10 +1,5 @@
 ﻿using NetCoreTestProjectKinopoisk.Pages;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
@@ -17,7 +12,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
 
         [SetUp]
         public void TestPreparation()
-        {            
+        {
             girlfriendExperiencePage = new GirlfriendExperiencePage(driver);
             extendedSearchPage = new ExtendedSearchPage(driver);
             mainPage = new MainPage(driver);

@@ -12,7 +12,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
     {
         private static int implicitWait = 5;
         public static IWebDriver GetDriver(DriverNames driverName)
-        {            
+        {
             IWebDriver webDriver;
             switch (driverName)
             {

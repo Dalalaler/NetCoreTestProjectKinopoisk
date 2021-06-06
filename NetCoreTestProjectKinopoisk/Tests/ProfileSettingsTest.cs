@@ -1,6 +1,5 @@
 ﻿using NetCoreTestProjectKinopoisk.Pages;
 using NUnit.Framework;
-using System.Threading;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
@@ -31,7 +30,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
 
             driver.Navigate().Refresh();
 
-            
+
             Assert.AreEqual(settingsEditingPage.getName(), name);
             Assert.AreEqual(settingsEditingPage.getSecondName(), secondName);
         }

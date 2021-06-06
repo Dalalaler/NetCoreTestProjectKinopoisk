@@ -32,7 +32,7 @@ namespace NetCoreTestProjectKinopoisk.Pages
 
         public bool IsEnabledExitButton()
         {
-            return driver.FindElement(exitButton).Enabled;            
+            return driver.FindElement(exitButton).Enabled;
         }
 
         public bool IsEnabledEnterButton()
@@ -44,7 +44,7 @@ namespace NetCoreTestProjectKinopoisk.Pages
         {
         }
         public override void Open()
-        {            
+        {
             driver.Url = mainPageUrl;
         }
     }

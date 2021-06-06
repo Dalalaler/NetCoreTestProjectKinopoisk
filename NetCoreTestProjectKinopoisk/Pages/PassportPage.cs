@@ -57,7 +57,7 @@ namespace NetCoreTestProjectKinopoisk.Pages
                 if (error.Length > 0)
                 {
                     return true;
-                }                
+                }
                 return false;
             });
 
@@ -65,8 +65,6 @@ namespace NetCoreTestProjectKinopoisk.Pages
 
             return driver.FindElement(errorMessage).Text;
         }
-
-
 
         public override void Open()
         {

@@ -2,7 +2,7 @@
 
 namespace NetCoreTestProjectKinopoisk.Pages
 {
-    abstract public class AbstractPage 
+    abstract public class AbstractPage
     {
         protected IWebDriver driver;
 

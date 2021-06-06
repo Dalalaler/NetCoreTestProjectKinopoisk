@@ -1,6 +1,5 @@
 ﻿using NetCoreTestProjectKinopoisk.Pages;
 using NUnit.Framework;
-using System.Threading;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
@@ -20,7 +19,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
         public void TrailerViewing()
         {
             mainPage.SearchFilm(filmName);
-            Assert.True(girlfriendExperiencePage.playTrailer());  
+            Assert.True(girlfriendExperiencePage.playTrailer());
         }
     }
 }

@@ -16,15 +16,14 @@ namespace NetCoreTestProjectKinopoisk.Tests
         private string loginErrorMessage = "Такого аккаунта нет";
         private string passwordErrorMessage = "Неверный пароль";
 
-
         [SetUp]
         public void TestPreparation()
         {
             mainPage = new MainPage(driver);
             passportPage = new PassportPage(driver);
             mainPage.Open();
-        }      
-       
+        }
+
         [Test]
         public void SuccessfulLoginTest()
         {
@@ -39,16 +38,16 @@ namespace NetCoreTestProjectKinopoisk.Tests
 
         [Test]
         public void UnsuccessfulLoginTest()
-        {    
+        {
             mainPage.PressEnterButton();
 
             passportPage.EnterLogin(wrongLogin);
             passportPage.PressEnterButton();
-           
+
             Assert.AreEqual(passportPage.GetErrorMessage(), loginErrorMessage);
 
             passportPage.ClearLogin();
-            
+
             passportPage.EnterLogin(login);
             passportPage.PressEnterButton();
 
@@ -62,7 +61,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
         [Test]
         public void LogoutTest()
         {
-            SuccessfulLoginTest();   
+            SuccessfulLoginTest();
             mainPage.PressAvatarButtin();
             mainPage.PressExitButton();
 

@@ -20,9 +20,9 @@ namespace NetCoreTestProjectKinopoisk.Tests
         public void ViewedAddingTest()
         {
             LoginTest loginTest = new LoginTest();
-            loginTest.SuccessfulLoginTest();          
+            loginTest.SuccessfulLoginTest();
             mainPage.SearchFilm(filmName);
-            Assert.True(girlfriendExperiencePage.pressMarkAsViewedButton());    
+            Assert.True(girlfriendExperiencePage.pressMarkAsViewedButton());
         }
 
         [Test]

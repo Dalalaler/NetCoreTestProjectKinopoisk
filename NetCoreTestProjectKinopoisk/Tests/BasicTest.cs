@@ -16,13 +16,13 @@ namespace NetCoreTestProjectKinopoisk.Tests
 
         [OneTimeSetUp]
         public void TestSetup()
-        {            
+        {
             driver = DriverFactory.GetDriver(Enums.DriverNames.CHROME);
         }
         [OneTimeTearDown]
         public void QuitDriver()
-        {            
+        {
             driver.Quit();
-        }        
+        }
     }
 }
