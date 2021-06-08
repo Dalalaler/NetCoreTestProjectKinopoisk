@@ -1,38 +1,38 @@
-﻿using NetCoreTestProjectKinopoisk.Pages;
+﻿using Constants;
+using Driver;
 using NUnit.Framework;
+using Pages;
+using Utils;
 
-namespace NetCoreTestProjectKinopoisk.Tests
+namespace Tests
 {
-    class ProfileSettingsTest : BasicTest
+    public class ProfileSettingsTest : BaseTest
     {
-        private string name = "FakeName";
-        private string secondName = "FakeSecondName";
-
+        private string _name = TestSettings.UserName;
+        private string _secondName = TestSettings.UserSecondName;
 
         [SetUp]
         public void TestPreparation()
         {
-            mainPage = new MainPage(driver);
-            passportPage = new PassportPage(driver);
-            settingsEditingPage = new SettingsEditingPage(driver);
-            mainPage.Open();
+            _driver = DriverFactory.GetDriver(Enums.DriverNames.CHROME);
+            _mainPage = new MainPage(_driver);
+
+            _passportPage = new PassportPage(_driver);
+            _settingsEditingPage = new SettingsEditingPage(_driver);
+            _mainPage.Open();
         }
 
         [Test]
         public void SettingChangeTest()
         {
-            LoginTest loginTest = new LoginTest();
-            loginTest.SuccessfulLoginTest();
-            settingsEditingPage.Open();
-            settingsEditingPage.enterName(name);
-            settingsEditingPage.enterSecondName(secondName);
-            settingsEditingPage.pressSaveAllButton();
-
-            driver.Navigate().Refresh();
-
-
-            Assert.AreEqual(settingsEditingPage.getName(), name);
-            Assert.AreEqual(settingsEditingPage.getSecondName(), secondName);
+            LoginUtil.SuccessfulLogin(_driver, _mainPage, _passportPage);
+            _settingsEditingPage.Open();
+            _settingsEditingPage.EnterName(_name);
+            _settingsEditingPage.EnterSecondName(_secondName);
+            _settingsEditingPage.PressSaveAllButton();
+            _driver.Navigate().Refresh();
+            Assert.AreEqual(_settingsEditingPage.GetName(), _name);
+            Assert.AreEqual(_settingsEditingPage.GetSecondName(), _secondName);
         }
     }
 }

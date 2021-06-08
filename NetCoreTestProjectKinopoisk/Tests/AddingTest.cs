@@ -1,38 +1,36 @@
-﻿using NetCoreTestProjectKinopoisk.Pages;
+﻿using Constants;
+using Driver;
 using NUnit.Framework;
+using Pages;
+using Utils;
 
-namespace NetCoreTestProjectKinopoisk.Tests
+namespace Tests
 {
-    class AddingTest : BasicTest
+    public class AddingTest : BaseTest
     {
-        private string filmName = "Girlfriend Experience, The 2009";
+        private string _filmName = TestSettings.FilmName;
+        private string _russianFilmName = "Девушка по вызову";
 
         [SetUp]
         public void TestPreparation()
         {
-            mainPage = new MainPage(driver);
-            passportPage = new PassportPage(driver);
-            girlfriendExperiencePage = new GirlfriendExperiencePage(driver);
-            mainPage.Open();
-        }
-
-        [Test]
-        public void ViewedAddingTest()
-        {
-            LoginTest loginTest = new LoginTest();
-            loginTest.SuccessfulLoginTest();
-            mainPage.SearchFilm(filmName);
-            Assert.True(girlfriendExperiencePage.pressMarkAsViewedButton());
+            _driver = DriverFactory.GetDriver(Enums.DriverNames.CHROME);
+            _mainPage = new MainPage(_driver);
+            _passportPage = new PassportPage(_driver);
+            _girlfriendExperiencePage = new GirlfriendExperiencePage(_driver);
+            _favoriteFilmsPage = new FavoriteFilmsPage(_driver);
+            _mainPage.Open();
         }
 
         [Test]
         public void FavoriteAddingTest()
         {
-            LoginTest loginTest = new LoginTest();
-            loginTest.SuccessfulLoginTest();
-            mainPage.SearchFilm(filmName);
-            girlfriendExperiencePage.openList();
-            Assert.True(girlfriendExperiencePage.addToFavorite());
+            LoginUtil.SuccessfulLogin(_driver, _mainPage, _passportPage);
+            _mainPage.SearchFilm(_filmName);
+            _girlfriendExperiencePage.OpenList();
+            _girlfriendExperiencePage.AddToFavorite();
+            _favoriteFilmsPage.Open();
+            Assert.AreEqual(_favoriteFilmsPage.GetFavoriteFilmName(), _russianFilmName);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using NetCoreTestProjectKinopoisk.Enums;
+﻿using Constants;
+using Enums;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -6,11 +7,11 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Opera;
 using System;
 
-namespace NetCoreTestProjectKinopoisk.Tests
+namespace Driver
 {
     class DriverFactory
     {
-        private static int implicitWait = 5;
+        private static int _implicitWait = TestSettings.ImplicitWait;
         public static IWebDriver GetDriver(DriverNames driverName)
         {
             IWebDriver webDriver;
@@ -18,7 +19,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
             {
                 case DriverNames.CHROME:
                     webDriver = new ChromeDriver();
-                    webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(implicitWait);
+                    webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_implicitWait);
                     break;
                 case DriverNames.EDGE:
                     webDriver = new EdgeDriver();

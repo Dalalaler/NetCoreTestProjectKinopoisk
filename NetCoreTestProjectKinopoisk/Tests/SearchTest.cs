@@ -1,40 +1,43 @@
-﻿using NetCoreTestProjectKinopoisk.Pages;
+﻿using Constants;
+using Driver;
 using NUnit.Framework;
+using Pages;
 
-namespace NetCoreTestProjectKinopoisk.Tests
+namespace Tests
 {
-    class SearchTest : BasicTest
+    public class SearchTest : BaseTest
     {
-        private string filmName = "Girlfriend Experience, The 2009";
-        private string expectedUrl = "https://www.kinopoisk.ru/film/415616/";
-        private string filmYear = "2009";
-        private string filmGenre = "драма";
+        private string _filmName = TestSettings.FilmName;
+        private string _expectedUrl = TestSettings.GirlfriendExperiencePage;
+        private string _filmYear = "2009";
+        private string _filmGenre = "драма";
 
         [SetUp]
         public void TestPreparation()
         {
-            girlfriendExperiencePage = new GirlfriendExperiencePage(driver);
-            extendedSearchPage = new ExtendedSearchPage(driver);
-            mainPage = new MainPage(driver);
+            _driver = DriverFactory.GetDriver(Enums.DriverNames.CHROME);
+            _girlfriendExperiencePage = new GirlfriendExperiencePage(_driver);
+            _extendedSearchPage = new ExtendedSearchPage(_driver);
+            _mainPage = new MainPage(_driver);
         }
 
         [Test]
         public void SearchingTest()
         {
-            mainPage.Open();
-            mainPage.SearchFilm(filmName);
-            Assert.AreEqual(expectedUrl, driver.Url);
+            _mainPage.Open();
+            _mainPage.SearchFilm(_filmName);
+            Assert.AreEqual(_expectedUrl, _driver.Url);
         }
 
         [Test]
         public void SearchingWithFiltersTest()
         {
-            extendedSearchPage.Open();
-            extendedSearchPage.enterFilmName(filmName);
-            extendedSearchPage.enterFilmYear(filmYear);
-            extendedSearchPage.chooseFilmGenre(filmGenre);
-            extendedSearchPage.pressSearchButton();
-            Assert.AreEqual(expectedUrl, driver.Url);
+            _extendedSearchPage.Open();
+            _extendedSearchPage.EnterFilmName(_filmName);
+            _extendedSearchPage.EnterFilmYear(_filmYear);
+            _extendedSearchPage.ChooseFilmGenre(_filmGenre);
+            _extendedSearchPage.PressSearchButton();
+            Assert.AreEqual(_expectedUrl, _driver.Url);
         }
     }
 }

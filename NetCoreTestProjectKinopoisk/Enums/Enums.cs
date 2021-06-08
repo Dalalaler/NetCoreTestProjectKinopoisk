@@ -1,4 +1,4 @@
-﻿namespace NetCoreTestProjectKinopoisk.Enums
+﻿namespace Enums
 {
     public enum DriverNames
     {

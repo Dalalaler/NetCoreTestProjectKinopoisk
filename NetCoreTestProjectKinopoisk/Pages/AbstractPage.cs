@@ -1,14 +1,14 @@
 ﻿using OpenQA.Selenium;
 
-namespace NetCoreTestProjectKinopoisk.Pages
+namespace Pages
 {
-    abstract public class AbstractPage
+    public abstract class AbstractPage
     {
-        protected IWebDriver driver;
+        protected IWebDriver Driver;
 
         public AbstractPage(IWebDriver driver)
         {
-            this.driver = driver;
+            this.Driver = driver;
         }
 
         public abstract void Open();
