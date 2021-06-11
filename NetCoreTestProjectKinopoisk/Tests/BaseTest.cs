@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using Pages;
+using NetCoreTestProjectKinopoisk.Pages;
 
-namespace Tests
+namespace NetCoreTestProjectKinopoisk.Tests
 {
     [TestFixture]
     public abstract class BaseTest

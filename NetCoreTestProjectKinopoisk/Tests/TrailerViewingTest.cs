@@ -1,9 +1,9 @@
-﻿using Constants;
-using Driver;
+﻿using NetCoreTestProjectKinopoisk.Constants;
+using NetCoreTestProjectKinopoisk.Driver;
 using NUnit.Framework;
-using Pages;
+using NetCoreTestProjectKinopoisk.Pages;
 
-namespace Tests
+namespace NetCoreTestProjectKinopoisk.Tests
 {
     public class TrailerViewingTest : BaseTest
     {
@@ -12,7 +12,7 @@ namespace Tests
         [SetUp]
         public void TestPreparation()
         {
-            _driver = DriverFactory.GetDriver(Enums.DriverNames.CHROME);
+            _driver = DriverSingleton.getInstance().getDriver();
             _mainPage = new MainPage(_driver);
             _girlfriendExperiencePage = new GirlfriendExperiencePage(_driver);
             _mainPage.Open();

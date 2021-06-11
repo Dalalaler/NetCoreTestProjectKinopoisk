@@ -1,9 +1,9 @@
-﻿using Constants;
+﻿using NetCoreTestProjectKinopoisk.Constants;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 
-namespace Pages
+namespace NetCoreTestProjectKinopoisk.Pages
 {
     public class PassportPage : AbstractPage
     {

@@ -1,8 +1,8 @@
-﻿using Constants;
+﻿using NetCoreTestProjectKinopoisk.Constants;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
-namespace Pages
+namespace NetCoreTestProjectKinopoisk.Pages
 {
     public class ExtendedSearchPage : AbstractPage
     {

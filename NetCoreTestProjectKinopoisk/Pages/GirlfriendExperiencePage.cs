@@ -1,7 +1,7 @@
-﻿using Constants;
+﻿using NetCoreTestProjectKinopoisk.Constants;
 using OpenQA.Selenium;
 
-namespace Pages
+namespace NetCoreTestProjectKinopoisk.Pages
 {
     public class GirlfriendExperiencePage : AbstractPage
     {
@@ -12,6 +12,7 @@ namespace Pages
         private By _markAsFavorite = By.XPath("//span[.=\"Любимые фильмы\"]/..");
         private By _playerCloseButton = By.XPath("//button[@class=\"discovery-trailers-closer\"]");
         private By _willWatchButton = By.XPath("//button[.=\"Буду смотреть\"]");
+        private By _haveBeenAddedToFavoriteMarker = By.XPath("//div[@class=\"styles_userFolders__obqzA\"]");
 
         public GirlfriendExperiencePage(IWebDriver driver) : base(driver)
         {
@@ -29,11 +30,11 @@ namespace Pages
 
         public void AddToFavorite()
         {
-            if (Driver.FindElement(_markAsFavorite).Enabled)
+            bool isFilmAlreadyAdded = Driver.FindElement(_haveBeenAddedToFavoriteMarker).Displayed;
+            if (!isFilmAlreadyAdded)
             {
                 Driver.FindElement(_markAsFavorite).Click();
-            }
-            Driver.FindElement(_willWatchButton).Click();
+            }           
         }
 
         public bool PressMarkAsViewedButton()

@@ -1,10 +1,10 @@
-﻿using Constants;
+﻿using NetCoreTestProjectKinopoisk.Constants;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Pages;
+using NetCoreTestProjectKinopoisk.Pages;
 using System;
 
-namespace Utils
+namespace NetCoreTestProjectKinopoisk.Utils
 {
     public class LoginUtil
     {

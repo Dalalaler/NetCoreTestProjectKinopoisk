@@ -1,10 +1,10 @@
-﻿using Constants;
-using Driver;
+﻿using NetCoreTestProjectKinopoisk.Constants;
+using NetCoreTestProjectKinopoisk.Driver;
 using NUnit.Framework;
-using Pages;
-using Utils;
+using NetCoreTestProjectKinopoisk.Pages;
+using NetCoreTestProjectKinopoisk.Utils;
 
-namespace Tests
+namespace NetCoreTestProjectKinopoisk.Tests
 {
     [TestFixture]
     public class LoginTest : BaseTest
@@ -19,7 +19,7 @@ namespace Tests
         [SetUp]
         public void TestPreparation()
         {
-            _driver = DriverFactory.GetDriver(Enums.DriverNames.CHROME);
+            _driver = DriverSingleton.getInstance().getDriver();
             _mainPage = new MainPage(_driver);
             _passportPage = new PassportPage(_driver);
             _mainPage.Open();

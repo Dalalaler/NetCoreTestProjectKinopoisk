@@ -1,7 +1,7 @@
-﻿using Constants;
+﻿using NetCoreTestProjectKinopoisk.Constants;
 using OpenQA.Selenium;
 
-namespace Pages
+namespace NetCoreTestProjectKinopoisk.Pages
 {
     public class FavoriteFilmsPage : AbstractPage
     {

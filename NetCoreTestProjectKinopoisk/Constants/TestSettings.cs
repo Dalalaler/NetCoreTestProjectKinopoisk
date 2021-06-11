@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Constants
+namespace NetCoreTestProjectKinopoisk.Constants
 {
     public class TestSettings
     {

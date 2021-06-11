@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace Pages
+namespace NetCoreTestProjectKinopoisk.Pages
 {
     public abstract class AbstractPage
     {
@@ -8,7 +8,7 @@ namespace Pages
 
         public AbstractPage(IWebDriver driver)
         {
-            this.Driver = driver;
+            Driver = driver;
         }
 
         public abstract void Open();
