@@ -19,7 +19,17 @@ namespace NetCoreTestProjectKinopoisk.Driver
             switch (driverName)
             {
                 case DriverNamesEnum.CHROME:
-                    webDriver = new ChromeDriver();
+                    ChromeOptions options = new ChromeOptions();
+                    options.AddArguments("--test-type");
+                    options.AddArguments("--start-maximized");
+                    options.AddArguments("--allow-file-access-from-files");
+                    options.AddArguments("--allow-running-insecure-content");
+                    options.AddArguments("--allow-cross-origin-auth-prompt");
+                    options.AddArguments("--allow-file-access");
+                    options.AddArgument("--disable-web-security");
+                    options.AddArguments("--disable-gpu");
+                    //options.AddArguments("--user-data-dir=~/chromeTemp");
+                    webDriver = new ChromeDriver(options);
                     webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(_implicitWait);
                     break;
                 case DriverNamesEnum.EDGE:
