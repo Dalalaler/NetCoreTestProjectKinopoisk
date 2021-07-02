@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using NetCoreTestProjectKinopoisk.Pages;
+using NetCoreTestProjectKinopoisk.Driver;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
@@ -15,11 +16,10 @@ namespace NetCoreTestProjectKinopoisk.Tests
         protected ExtendedSearchPage _extendedSearchPage;
         protected FavoriteFilmsPage _favoriteFilmsPage;
 
-        [TearDown]
-        public void TestEnding()
+        [OneTimeSetUp]
+        public void DriverSetup()
         {
-            _driver.Manage().Cookies.DeleteAllCookies();
-            _driver.Quit();
+            _driver = DriverSingleton.getInstance().getDriver();
         }
 
         [OneTimeTearDown]

@@ -15,7 +15,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
         [SetUp]
         public void TestPreparation()
         {
-            _driver = DriverSingleton.getInstance().getDriver();
+            //_driver = DriverSingleton.getInstance().getDriver();
             _girlfriendExperiencePage = new GirlfriendExperiencePage(_driver);
             _extendedSearchPage = new ExtendedSearchPage(_driver);
             _mainPage = new MainPage(_driver);

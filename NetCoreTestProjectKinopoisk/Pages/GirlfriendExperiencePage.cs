@@ -12,9 +12,12 @@ namespace NetCoreTestProjectKinopoisk.Pages
     {
         private string _pageUrl = TestSettings.GirlfriendExperiencePage;
         private By _trailerPlayButton = By.XPath("//button[.=\"Трейлер\"]/..");
-        private By _markAsViewedButton = By.XPath("//span[.=\"Отметить просмотренным\"]/ancestor::button");
-        private By _openListButton = By.XPath("//span[.=\"Добавить в список\"]/ancestor::button");
-        private By _markAsFavorite = By.XPath("//span[.=\"Любимые фильмы\"]/..");
+        private By _markAsViewedButton = By.XPath("//label[.='Любимые фильмы']");
+        private By _openListButton = By.XPath("//button[@class='styles_button__VDRar styles_root__2xv1d styles_rootDark__2mnS3 styles_root__3_KIA styles_rootDark__3Jeum styles_rootGhost__1llle']");
+        private By _markAsFavorite = By.XPath("//label[.='Любимые фильмы']");
+        private By _addedToFavoritePopupText = By.XPath("//div[@class='styles_content__cGNhr']");
+        private By _markAsFavoriteMarker = By.XPath("//div[@class='styles_userFolders__obqzA']");
+        private By _markAsFavoriteMarker2 = By.XPath("//div[@class='styles_root__1yCWt styles_notifyTooltip__2C-Y4']");
         private By _playerCloseButton = By.XPath("//button[@class=\"discovery-trailers-closer\"]");
         private By _willWatchButton = By.XPath("//button[.=\"Буду смотреть\"]");
         private By _haveBeenAddedToFavoriteMarker = By.XPath("//div[@class=\"styles_userFolders__obqzA\"]");
@@ -36,21 +39,26 @@ namespace NetCoreTestProjectKinopoisk.Pages
 
         public void OpenList()
         {
+            //IWebElement openListButton = Driver.FindElement(_openListButton);
+            //Actions actions = new Actions(Driver);
+            //actions.MoveToElement(openListButton).Build().Perform();
             Driver.FindElement(_openListButton).Click();
+            //Thread.Sleep(3000);
         }
 
         public void AddToFavorite()
         {
-            bool isFilmAlreadyAdded = Driver.FindElement(_haveBeenAddedToFavoriteMarker).Displayed;
-            if (!isFilmAlreadyAdded)
-            {
-                Driver.FindElement(_markAsFavorite).Click();
-            }
-            else
-            {
-                Driver.FindElement(_markAsFavorite).Click();
-                Driver.FindElement(_markAsFavorite).Click();
-            }
+            //IWebElement addToFavoriteButton = Driver.FindElement(_markAsFavorite);
+            //Actions actions = new Actions(Driver);
+            //actions.MoveToElement(addToFavoriteButton).Build().Perform();
+
+            //actions.MoveToElement(addToFavoriteButton).Click();
+            //Thread.Sleep(3000);
+            Driver.FindElement(_markAsFavorite).Click();
+            WebDriverWait wait;
+            wait = new WebDriverWait(Driver, new TimeSpan(0, 0, 10));           
+            wait.Until(driver => !driver.FindElement(_addedToFavoritePopupText).Displayed);
+            //Thread.Sleep(3000);
         }
 
         public bool PressMarkAsViewedButton()

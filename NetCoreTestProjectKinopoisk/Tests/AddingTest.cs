@@ -14,7 +14,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
         [SetUp]
         public void TestPreparation()
         {
-            _driver = DriverSingleton.getInstance().getDriver();
+            //_driver = DriverSingleton.getInstance().getDriver();
             _mainPage = new MainPage(_driver);
             _passportPage = new PassportPage(_driver);
             _girlfriendExperiencePage = new GirlfriendExperiencePage(_driver);
@@ -26,9 +26,12 @@ namespace NetCoreTestProjectKinopoisk.Tests
         public void FavoriteAddingTest()
         {
             LoginUtil.SuccessfulLogin(_driver, _mainPage, _passportPage);
+            _favoriteFilmsPage.Open();
+            _favoriteFilmsPage.ClearFavoriteFilmsList();
             _mainPage.SearchFilm(_filmName);
             _girlfriendExperiencePage.OpenList();
             _girlfriendExperiencePage.AddToFavorite();
+            _girlfriendExperiencePage.OpenList();
             _favoriteFilmsPage.Open();
             Assert.AreEqual(_favoriteFilmsPage.GetFavoriteFilmName(), _russianFilmName);
         }

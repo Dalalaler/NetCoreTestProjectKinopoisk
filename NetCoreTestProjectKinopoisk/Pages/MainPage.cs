@@ -8,7 +8,7 @@ namespace NetCoreTestProjectKinopoisk.Pages
         private string _mainPageUrl = TestSettings.MainPageUrl;
         private By _enterButton = By.XPath("//button[.=\"Войти\"]");
         private By _exitButton = By.XPath("//button[.=\"Выйти\"]");
-        private By _avatarButton = By.XPath("//button[@class=\"_1yTvXZeNVzDgKDsQHyALNZ\"]");
+        private By _avatarButton = By.XPath("//button[@class=\"_2qHp--ECQnhDXhUj2tVdgf\"]");
         private By _filmSearchInput = By.XPath("//input[@name=\"kp_query\"]");
 
         public void SearchFilm(string filmName)

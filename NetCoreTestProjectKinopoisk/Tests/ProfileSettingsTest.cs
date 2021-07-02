@@ -14,7 +14,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
         [SetUp]
         public void TestPreparation()
         {
-            _driver = DriverSingleton.getInstance().getDriver();
+            //_driver = DriverSingleton.getInstance().getDriver();
             _mainPage = new MainPage(_driver);
 
             _passportPage = new PassportPage(_driver);
