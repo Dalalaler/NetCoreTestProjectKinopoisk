@@ -1,26 +1,30 @@
-﻿using NetCoreTestProjectKinopoisk.Pages;
+﻿using NetCoreTestProjectKinopoisk.Constants;
+using NetCoreTestProjectKinopoisk.Driver;
+using NetCoreTestProjectKinopoisk.Pages;
 using NUnit.Framework;
-using System.Threading;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
-    class TrailerViewingTest : BasicTest
+    public class TrailerViewingTest : BaseTest
     {
-        private string filmName = "Girlfriend Experience, The 2009";
+        //private string _filmName = TestSettings.FilmName;
 
-        [SetUp]
-        public void TestPreparation()
-        {
-            mainPage = new MainPage(driver);
-            girlfriendExperiencePage = new GirlfriendExperiencePage(driver);
-            mainPage.Open();
-        }
+        //[SetUp]
+        //public void TestPreparation()
+        //{
+        //    _driver = DriverSingleton.getInstance().getDriver();
+        //    _mainPage = new MainPage(_driver);
+        //    _girlfriendExperiencePage = new GirlfriendExperiencePage(_driver);
+        //    _mainPage.Open();
+        //}
 
-        [Test]
-        public void TrailerViewing()
-        {
-            mainPage.SearchFilm(filmName);
-            Assert.True(girlfriendExperiencePage.playTrailer());  
-        }
+        //[Test]
+        //public void TrailerViewing()
+        //{
+        //    _mainPage.SearchFilm(_filmName);
+        //    _girlfriendExperiencePage.PlayTrailer();
+        //    _girlfriendExperiencePage.SkipAdds();
+        //    _girlfriendExperiencePage.PressPlayButton();
+        //}
     }
 }

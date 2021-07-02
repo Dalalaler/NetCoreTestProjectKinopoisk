@@ -1,38 +1,39 @@
-﻿using NetCoreTestProjectKinopoisk.Pages;
+﻿using NetCoreTestProjectKinopoisk.Constants;
+using NetCoreTestProjectKinopoisk.Driver;
 using NUnit.Framework;
+using NetCoreTestProjectKinopoisk.Pages;
+using NetCoreTestProjectKinopoisk.Utils;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
-    class AddingTest : BasicTest
+    public class AddingTest : BaseTest
     {
-        private string filmName = "Girlfriend Experience, The 2009";
+        private string _filmName = TestSettings.FilmName;
+        private string _russianFilmName = "Девушка по вызову";
 
         [SetUp]
         public void TestPreparation()
         {
-            mainPage = new MainPage(driver);
-            passportPage = new PassportPage(driver);
-            girlfriendExperiencePage = new GirlfriendExperiencePage(driver);
-            mainPage.Open();
-        }
-
-        [Test]
-        public void ViewedAddingTest()
-        {
-            LoginTest loginTest = new LoginTest();
-            loginTest.SuccessfulLoginTest();          
-            mainPage.SearchFilm(filmName);
-            Assert.True(girlfriendExperiencePage.pressMarkAsViewedButton());    
+            //_driver = DriverSingleton.getInstance().getDriver();
+            _mainPage = new MainPage(_driver);
+            _passportPage = new PassportPage(_driver);
+            _girlfriendExperiencePage = new GirlfriendExperiencePage(_driver);
+            _favoriteFilmsPage = new FavoriteFilmsPage(_driver);
+            _mainPage.Open();
         }
 
         [Test]
         public void FavoriteAddingTest()
         {
-            LoginTest loginTest = new LoginTest();
-            loginTest.SuccessfulLoginTest();
-            mainPage.SearchFilm(filmName);
-            girlfriendExperiencePage.openList();
-            Assert.True(girlfriendExperiencePage.addToFavorite());
+            LoginUtil.SuccessfulLogin(_driver, _mainPage, _passportPage);
+            _favoriteFilmsPage.Open();
+            _favoriteFilmsPage.ClearFavoriteFilmsList();
+            _mainPage.SearchFilm(_filmName);
+            _girlfriendExperiencePage.OpenList();
+            _girlfriendExperiencePage.AddToFavorite();
+            _girlfriendExperiencePage.OpenList();
+            _favoriteFilmsPage.Open();
+            Assert.AreEqual(_favoriteFilmsPage.GetFavoriteFilmName(), _russianFilmName);
         }
     }
 }

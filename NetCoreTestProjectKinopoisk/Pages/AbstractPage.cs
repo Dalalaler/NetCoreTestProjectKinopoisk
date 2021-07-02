@@ -2,13 +2,13 @@
 
 namespace NetCoreTestProjectKinopoisk.Pages
 {
-    abstract public class AbstractPage 
+    public abstract class AbstractPage
     {
-        protected IWebDriver driver;
+        protected IWebDriver Driver;
 
         public AbstractPage(IWebDriver driver)
         {
-            this.driver = driver;
+            Driver = driver;
         }
 
         public abstract void Open();

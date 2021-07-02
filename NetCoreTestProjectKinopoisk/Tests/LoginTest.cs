@@ -1,72 +1,59 @@
-﻿using NetCoreTestProjectKinopoisk.Pages;
+﻿using NetCoreTestProjectKinopoisk.Constants;
+using NetCoreTestProjectKinopoisk.Driver;
 using NUnit.Framework;
-using System.Threading;
+using NetCoreTestProjectKinopoisk.Pages;
+using NetCoreTestProjectKinopoisk.Utils;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
     [TestFixture]
-    public class LoginTest : BasicTest
+    public class LoginTest : BaseTest
     {
-        private string login = "fakemail4tests";
-        private string password = "stWgvP9WiafjNJ2";
-
-        private string wrongLogin = "wrongfakemail4tests";
-        private string wrongPassword = "wrongstWgvP9WiafjNJ2";
-
-        private string loginErrorMessage = "Такого аккаунта нет";
-        private string passwordErrorMessage = "Неверный пароль";
-
+        private string _login = TestSettings.Login;
+        private string _password = TestSettings.Password;
+        private string _wrongLogin = "wronglogin" + TestSettings.Login;
+        private string _wrongPassword = "wrongpass" + TestSettings.Password;
+        private string _loginErrorMessage = "Такого аккаунта нет";
+        private string _passwordErrorMessage = "Неверный пароль";
 
         [SetUp]
         public void TestPreparation()
-        {
-            mainPage = new MainPage(driver);
-            passportPage = new PassportPage(driver);
-            mainPage.Open();
-        }      
-       
+        {            
+            _mainPage = new MainPage(_driver);
+            _passportPage = new PassportPage(_driver);
+            _mainPage.Open();
+        }
+
         [Test]
         public void SuccessfulLoginTest()
         {
-            mainPage.PressEnterButton();
-            passportPage.EnterLogin(login);
-            passportPage.PressEnterButton();
-            passportPage.EnterPassword(password);
-            passportPage.PressEnterButton();
-
-            Assert.True(mainPage.IsEnabledExitButton());
+            LoginUtil.SuccessfulLogin(_driver, _mainPage, _passportPage);
+            Assert.True(_mainPage.IsEnabledExitButton());
         }
 
         [Test]
         public void UnsuccessfulLoginTest()
-        {    
-            mainPage.PressEnterButton();
-
-            passportPage.EnterLogin(wrongLogin);
-            passportPage.PressEnterButton();
-           
-            Assert.AreEqual(passportPage.GetErrorMessage(), loginErrorMessage);
-
-            passportPage.ClearLogin();
-            
-            passportPage.EnterLogin(login);
-            passportPage.PressEnterButton();
-
-            passportPage.EnterPassword(wrongPassword);
-            passportPage.PressEnterButton();
-
-            Thread.Sleep(1000);
-            Assert.AreEqual(passportPage.GetErrorMessage(), passwordErrorMessage);
+        {
+            _mainPage.Open();
+            _mainPage.PressEnterButton();
+            _passportPage.EnterLogin(_wrongLogin);
+            _passportPage.PressEnterButton();
+            Assert.AreEqual(_passportPage.GetErrorMessage(), _loginErrorMessage);
+            _passportPage.ClearLogin();
+            _passportPage.EnterLogin(_login);
+            _passportPage.PressEnterButton();
+            _passportPage.EnterPassword(_wrongPassword);
+            _passportPage.PressEnterButton();
+            Assert.AreEqual(_passportPage.GetErrorMessage(), _passwordErrorMessage);
         }
 
         [Test]
         public void LogoutTest()
         {
-            SuccessfulLoginTest();   
-            mainPage.PressAvatarButtin();
-            mainPage.PressExitButton();
-
-            Assert.True(mainPage.IsEnabledEnterButton());
+            SuccessfulLoginTest();
+            _mainPage.PressAvatarButtin();
+            _mainPage.PressExitButton();
+            Assert.True(_mainPage.IsEnabledEnterButton());
         }
     }
 }

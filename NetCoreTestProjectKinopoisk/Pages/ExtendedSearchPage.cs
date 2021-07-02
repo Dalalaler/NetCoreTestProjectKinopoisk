@@ -1,15 +1,16 @@
-﻿using OpenQA.Selenium;
+﻿using NetCoreTestProjectKinopoisk.Constants;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace NetCoreTestProjectKinopoisk.Pages
 {
     public class ExtendedSearchPage : AbstractPage
     {
-        private string pageUrl = "https://www.kinopoisk.ru/s/";
-        private By filmName = By.XPath("//input[@id=\"find_film\"]");
-        private By filmYear = By.XPath("//input[@id=\"year\"]");
-        private By filmGenre = By.XPath("//select[@id=\"m_act[genre]\"]");
-        private By searchButton = By.XPath("//input[@class=\"el_18 submit nice_button\"]");
+        private string _pageUrl = TestSettings.ExtendedPageUrl;
+        private By _filmName = By.XPath("//input[@id=\"find_film\"]");
+        private By _filmYear = By.XPath("//input[@id=\"year\"]");
+        private By _filmGenre = By.XPath("//select[@id=\"m_act[genre]\"]");
+        private By _searchButton = By.XPath("//input[@class=\"el_18 submit nice_button\"]");
 
         public ExtendedSearchPage(IWebDriver driver) : base(driver)
         {
@@ -17,28 +18,28 @@ namespace NetCoreTestProjectKinopoisk.Pages
 
         public override void Open()
         {
-            driver.Url = pageUrl;
+            Driver.Url = _pageUrl;
         }
 
-        public void enterFilmName(string film)
+        public void EnterFilmName(string film)
         {
-            driver.FindElement(filmName).SendKeys(film);
+            Driver.FindElement(_filmName).SendKeys(film);
         }
 
-        public void enterFilmYear(string year)
+        public void EnterFilmYear(string year)
         {
-            driver.FindElement(filmYear).SendKeys(year);
+            Driver.FindElement(_filmYear).SendKeys(year);
         }
 
-        public void chooseFilmGenre(string genre)
+        public void ChooseFilmGenre(string genre)
         {
-            SelectElement selectElement = new SelectElement(driver.FindElement(filmGenre));
+            SelectElement selectElement = new SelectElement(Driver.FindElement(_filmGenre));
             selectElement.SelectByText(genre);
         }
 
-        public void pressSearchButton()
+        public void PressSearchButton()
         {
-            driver.FindElement(searchButton).Click();
+            Driver.FindElement(_searchButton).Click();
         }
     }
 }

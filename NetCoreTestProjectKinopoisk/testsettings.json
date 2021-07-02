@@ -1,0 +1,22 @@
+{
+  "Settings": {
+    "Common": {
+      "ImplicitWait": 5,
+      "ExtendedPageUrl": "https://www.kinopoisk.ru/s/",
+      "FavoritePageUrl": "https://www.kinopoisk.ru/mykp/movies/list/type/6/",
+      "GirlfriendExperiencePage": "https://www.kinopoisk.ru/film/415616/",
+      "MainPageUrl": "https://www.kinopoisk.ru/",
+      "PassportPageUrl": "https://www.kinopoisk.ru/",
+      "SettingsEditingPageUrl": "https://www.kinopoisk.ru/mykp/edit_main/",
+      "FilmName": "Girlfriend Experience, The 2009",
+      "RussianFilmName": "Девушка по вызову",
+      "Login": "fakemail4tests",
+      "Password": "stWgvP9WiafjNJ2",
+      "LoginErrorMessage": "Такого аккаунта нет",
+      "PasswordErrorMessage": "Неверный пароль",
+      "UserName": "FakeName",
+      "UserSecondName": "FakeSecondName"
+
+    }
+  }
+}
