@@ -63,7 +63,7 @@ namespace NetCoreTestProjectKinopoisk.Pages
 
         public bool PressMarkAsViewedButton()
         {
-            if (Driver.FindElement(_markAsViewedButton).Enabled)
+            if (Driver.FindElement(_markAsViewedButton).Enabled) 
             {
                 Driver.FindElement(_markAsViewedButton).Click();
                 return true;

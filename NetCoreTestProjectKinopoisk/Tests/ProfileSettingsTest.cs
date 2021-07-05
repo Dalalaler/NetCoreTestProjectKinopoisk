@@ -6,7 +6,8 @@ using NetCoreTestProjectKinopoisk.Utils;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
-    public class ProfileSettingsTest : BaseTest
+    [TestFixture]
+    public class ProfileSettingsTest : Hooks
     {
         private string _name = TestSettings.UserName;
         private string _secondName = TestSettings.UserSecondName;
@@ -33,6 +34,12 @@ namespace NetCoreTestProjectKinopoisk.Tests
             _driver.Navigate().Refresh();
             Assert.AreEqual(_settingsEditingPage.GetName(), _name);
             Assert.AreEqual(_settingsEditingPage.GetSecondName(), _secondName);
+        }
+
+        [TearDown]
+        public void QuitDriver()
+        {
+            _driver.Quit();
         }
     }
 }

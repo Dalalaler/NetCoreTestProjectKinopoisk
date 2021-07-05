@@ -1,13 +1,13 @@
 ﻿using NetCoreTestProjectKinopoisk.Constants;
 using NetCoreTestProjectKinopoisk.Driver;
-using NUnit.Framework;
 using NetCoreTestProjectKinopoisk.Pages;
 using NetCoreTestProjectKinopoisk.Utils;
+using NUnit.Framework;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
     [TestFixture]
-    public class LoginTest : BaseTest
+    public class LoginTest : Hooks
     {
         private string _login = TestSettings.Login;
         private string _password = TestSettings.Password;
@@ -16,13 +16,32 @@ namespace NetCoreTestProjectKinopoisk.Tests
         private string _loginErrorMessage = "Такого аккаунта нет";
         private string _passwordErrorMessage = "Неверный пароль";
 
-        [SetUp]
-        public void TestPreparation()
-        {            
+        [OneTimeSetUp]
+        public void DriverPreparation()
+        {
+            _driver = DriverSingleton.getInstance().getDriver();
             _mainPage = new MainPage(_driver);
             _passportPage = new PassportPage(_driver);
+        }
+
+        [OneTimeTearDown]
+        public void QuitDriver()
+        {
+            _driver.Quit();
+        }
+
+        [SetUp]
+        public void TestPreparation()
+        {
             _mainPage.Open();
         }
+
+        [TearDown]
+        public void DriverCleaning()
+        {           
+            _driver.Manage().Cookies.DeleteAllCookies();
+        }
+
 
         [Test]
         public void SuccessfulLoginTest()
@@ -33,8 +52,7 @@ namespace NetCoreTestProjectKinopoisk.Tests
 
         [Test]
         public void UnsuccessfulLoginTest()
-        {
-            _mainPage.Open();
+        {          
             _mainPage.PressEnterButton();
             _passportPage.EnterLogin(_wrongLogin);
             _passportPage.PressEnterButton();
@@ -49,8 +67,9 @@ namespace NetCoreTestProjectKinopoisk.Tests
 
         [Test]
         public void LogoutTest()
-        {
+        {            
             SuccessfulLoginTest();
+            _mainPage.Open();
             _mainPage.PressAvatarButtin();
             _mainPage.PressExitButton();
             Assert.True(_mainPage.IsEnabledEnterButton());

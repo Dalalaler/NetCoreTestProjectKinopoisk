@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
-    public class TrailerViewingTest : BaseTest
+    public class TrailerViewingTest : Hooks
     {
         //private string _filmName = TestSettings.FilmName;
 

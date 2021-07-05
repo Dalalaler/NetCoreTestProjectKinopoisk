@@ -26,7 +26,8 @@ namespace NetCoreTestProjectKinopoisk.Driver
             {
                 _webDriver = DriverFactory.GetDriver(Enums.DriverNamesEnum.CHROME);
             }
-            return _webDriver;
+            //return _webDriver;
+            return _webDriver = DriverFactory.GetDriver(Enums.DriverNamesEnum.CHROME);
         }
     }
 }

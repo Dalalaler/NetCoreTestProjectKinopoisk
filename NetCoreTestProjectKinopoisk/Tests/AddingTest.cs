@@ -6,7 +6,8 @@ using NetCoreTestProjectKinopoisk.Utils;
 
 namespace NetCoreTestProjectKinopoisk.Tests
 {
-    public class AddingTest : BaseTest
+    [TestFixture]
+    public class AddingTest : Hooks
     {
         private string _filmName = TestSettings.FilmName;
         private string _russianFilmName = "Девушка по вызову";
@@ -34,6 +35,12 @@ namespace NetCoreTestProjectKinopoisk.Tests
             _girlfriendExperiencePage.OpenList();
             _favoriteFilmsPage.Open();
             Assert.AreEqual(_favoriteFilmsPage.GetFavoriteFilmName(), _russianFilmName);
+        }
+
+        [TearDown]
+        public void QuitDriver()
+        {
+            _driver.Quit();
         }
     }
 }
