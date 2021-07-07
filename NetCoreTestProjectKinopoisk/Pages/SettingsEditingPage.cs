@@ -1,18 +1,14 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NetCoreTestProjectKinopoisk.Constants;
+using OpenQA.Selenium;
 
 namespace NetCoreTestProjectKinopoisk.Pages
 {
     public class SettingsEditingPage : AbstractPage
     {
-        private string pageUrl = "https://www.kinopoisk.ru/mykp/edit_main/";
-        private By nameInput = By.XPath("//input[@id=\"edit[main][first_name]\"]");
-        private By secondNameInput = By.XPath("//input[@id=\"edit[main][last_name]\"]");
-        private By saveAllButton = By.XPath("//input[@id=\"js-save-edit-form\"]");
+        private string _pageUrl = TestSettings.SettingsEditingPageUrl;
+        private By _nameInput = By.XPath("//input[@id=\"edit[main][first_name]\"]");
+        private By _secondNameInput = By.XPath("//input[@id=\"edit[main][last_name]\"]");
+        private By _saveAllButton = By.XPath("//input[@id=\"js-save-edit-form\"]");
 
         public SettingsEditingPage(IWebDriver driver) : base(driver)
         {
@@ -20,36 +16,36 @@ namespace NetCoreTestProjectKinopoisk.Pages
 
         public override void Open()
         {
-            driver.Url = pageUrl;
+            Driver.Url = _pageUrl;
         }
 
-        public void enterName(string name)
+        public void EnterName(string name)
         {
-            driver.FindElement(nameInput).SendKeys(Keys.Control + "a");
-            driver.FindElement(nameInput).SendKeys(Keys.Delete);
-            driver.FindElement(nameInput).SendKeys(name);
+            Driver.FindElement(_nameInput).SendKeys(Keys.Control + "a");
+            Driver.FindElement(_nameInput).SendKeys(Keys.Delete);
+            Driver.FindElement(_nameInput).SendKeys(name);
         }
 
-        public string getName()
+        public string GetName()
         {
-            return driver.FindElement(nameInput).GetAttribute("value");
+            return Driver.FindElement(_nameInput).GetAttribute("value");
         }
 
-        public void enterSecondName(string secondName)
+        public void EnterSecondName(string secondName)
         {
-            driver.FindElement(secondNameInput).SendKeys(Keys.Control + "a");
-            driver.FindElement(secondNameInput).SendKeys(Keys.Delete);
-            driver.FindElement(secondNameInput).SendKeys(secondName);
+            Driver.FindElement(_secondNameInput).SendKeys(Keys.Control + "a");
+            Driver.FindElement(_secondNameInput).SendKeys(Keys.Delete);
+            Driver.FindElement(_secondNameInput).SendKeys(secondName);
         }
 
-        public string getSecondName()
+        public string GetSecondName()
         {
-            return driver.FindElement(secondNameInput).GetAttribute("value");
+            return Driver.FindElement(_secondNameInput).GetAttribute("value");
         }
 
-        public void pressSaveAllButton()
+        public void PressSaveAllButton()
         {
-            driver.FindElement(saveAllButton).Click();
+            Driver.FindElement(_saveAllButton).Click();
         }
     }
 }
